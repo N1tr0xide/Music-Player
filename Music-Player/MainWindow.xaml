@@ -6,7 +6,7 @@
         Title="Music Player by AQ" Height="720" Width="1280" AllowsTransparency="True" 
         WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Transparent">
 
-    <Border Background="Blue" CornerRadius="100" MouseDown="Border_MouseDown">
+    <Border Background="Blue" CornerRadius="100" MouseDown="Border_MouseDown" Name="PrimaryBackground">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
@@ -19,21 +19,17 @@
             </Grid.RowDefinitions>
 
             <!--Left Menu-->
-            <Border Background="DarkBlue" CornerRadius="40 0 0 40" Grid.RowSpan="2" Name="Menu">
+            <Border Background="DarkBlue" CornerRadius="40 0 0 40" Grid.RowSpan="2" Name="LeftMenu">
                 <StackPanel Margin="0 30 0 30">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 10" >
                         <Grid MouseDown="CloseButton_MouseDown">
                             <Ellipse Fill="Red" Width="20" Height="20" />
                             <TextBlock Text="X" Style="{StaticResource titleText}" Foreground="Black" FontStyle="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
                         </Grid>
-                        <Grid MouseDown="CloseButton_MouseDown">
+                        <Grid MouseDown="MaximizeButton_MouseDown">
                             <Ellipse Fill="Yellow" Width="20" Height="20" Margin="10 0"/>
-                            <TextBlock Text="X" Style="{StaticResource titleText}" Foreground="Black" FontStyle="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+                            <TextBlock Text="-" Style="{StaticResource titleText}" Foreground="Black" FontStyle="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
                         </Grid>
-                        <Grid MouseDown="CloseButton_MouseDown">
-                            <Ellipse Fill="Green" Width="20" Height="20"/>
-                            <TextBlock Text="X" Style="{StaticResource titleText}" Foreground="Black" FontStyle="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
-                        </Grid>                                              
                     </StackPanel>
 
                     <TextBlock Text="Library" Style="{StaticResource menuTitle}"/>
@@ -86,7 +82,7 @@
             </Border>
 
             <!--Songs Panel-->
-            <StackPanel Grid.Column="1" Background="Blue" Margin="40 40 10 0">
+            <StackPanel Grid.Column="1" Background="Blue" Margin="40 40 10 0" Visibility="Visible" Name="SongsPanel">
                 <TextBlock Text="Songs" Style="{StaticResource titleText}"/>
 
                 <Border CornerRadius="20" Margin="0 20 30 0">
@@ -145,8 +141,38 @@
             </StackPanel>
 
             <!--player-->
-            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Background="DarkBlue" Margin="40 0 0 0" CornerRadius="50 0 100 0">
-                
+            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Background="DarkBlue" Margin="40 0 0 0" CornerRadius="50 0 100 0" Name="Player">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Width="60" Height="60" Margin="30 0 0 0">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Images/testPic.jpg"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <StackPanel VerticalAlignment="Center" Margin="20 0 30 0" Width="220">
+                        <TextBlock Text="Song Name" Foreground="White" FontSize="30" FontWeight="Bold"/>
+                        <TextBlock Text=" artist name" Foreground="White" FontSize="24" FontWeight="SemiBold"/>
+                    </StackPanel>
+
+                    <Button Style="{StaticResource playerButton}">
+                        <Icon:PackIconMaterial Kind="SkipPrevious" Style="{StaticResource playerButtonIcon}"/>
+                    </Button>
+
+                    <Button Style="{StaticResource playerButton}">
+                        <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource playerButtonIcon}"/>
+                    </Button>
+
+                    <Button Style="{StaticResource playerButton}">
+                        <Icon:PackIconMaterial Kind="SkipNext" Style="{StaticResource playerButtonIcon}"/>
+                    </Button>
+
+                    <Button Style="{StaticResource playerButton}">
+                        <Icon:PackIconMaterial Kind="VolumeMedium" Style="{StaticResource playerButtonIcon}"/>
+                    </Button>
+
+                    <Slider Style="{DynamicResource SliderStyle1}" x:Name="volumeSlider" IsSelectionRangeEnabled="True" VerticalAlignment="Center" Value="5" Width="350" SelectionEnd="{Binding ElementName=volumeSlider,Path=Value}"/>
+
+                </StackPanel>
             </Border>
 
         </Grid>
