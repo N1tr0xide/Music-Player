@@ -21,6 +21,7 @@
             <!--Left Menu-->
             <Border Background="DarkBlue" CornerRadius="40 0 0 40" Grid.RowSpan="2" Name="LeftMenu">
                 <StackPanel Margin="0 30 0 30">
+                    
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 10" >
                         <Grid MouseDown="CloseButton_MouseDown">
                             <Ellipse Fill="Red" Width="20" Height="20" />
@@ -55,7 +56,7 @@
                         </Grid>
                     </Button>
 
-                    <Button Style="{StaticResource menuButton}">
+                    <Button Style="{StaticResource menuButton}" Click="SongButton_Click">
                         <Grid>
                             <TextBlock Text="Songs" VerticalAlignment="Center"/>
                             <Icon:PackIconMaterial Style="{StaticResource menuButtonIcon}"/>
@@ -158,7 +159,7 @@
                         <Icon:PackIconMaterial Kind="SkipPrevious" Style="{StaticResource playerButtonIcon}"/>
                     </Button>
 
-                    <Button Style="{StaticResource playerButton}">
+                    <Button Style="{StaticResource playerButton}" Click="PauseButton_Click">
                         <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource playerButtonIcon}"/>
                     </Button>
 

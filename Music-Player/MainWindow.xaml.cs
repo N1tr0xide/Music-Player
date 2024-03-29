@@ -1,10 +1,10 @@
-﻿using Music_Player.UserControls;
+﻿using Microsoft.Win32;
+using Music_Player.UserControls;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace Music_Player
 {
@@ -46,6 +46,17 @@ namespace Music_Player
             SongsPanel.Background = ColorPainter.SetColorBrush(colorPalette.mainBackground);
             Player.Background = ColorPainter.SetColorBrush(colorPalette.secondaryBackground);
             
+        }
+
+        private void SongButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Application.Current.Shutdown();
+            AudioPlayer.PlayAudio();
+        }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            AudioPlayer.PauseAudio();
         }
     }
 }
